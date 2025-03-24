@@ -13,20 +13,20 @@ public class GeradorDeObservacaoRecursivo implements GeradorDeObservacao<Integer
     }
 
     private static String obterMensagemPreenchidaComOsNumerosDaNotaFiscal(List<Integer> numerosNotaFiscal, final String mensagemPadrao) {
-        final Iterator<Integer> iterator = numerosNotaFiscal.iterator();
-        return mensagemPadrao + tralala(iterator.next(), iterator, new StringBuilder());
+        final Iterator<Integer> iterador = numerosNotaFiscal.iterator();
+        return mensagemPadrao + adicionarNumero(iterador.next(), iterador, new StringBuilder());
     }
 
-    private static String tralala(Integer anterior, Iterator<Integer> iterator, StringBuilder conteudoDaMensagemBuilder) {
-        conteudoDaMensagemBuilder.append(anterior);
-        if (iterator.hasNext()) {
-            int proximo = iterator.next();
-            if (iterator.hasNext())
+    private static String adicionarNumero(Integer numeroAtual, Iterator<Integer> iterador, StringBuilder conteudoDaMensagemBuilder) {
+        conteudoDaMensagemBuilder.append(numeroAtual);
+        if (iterador.hasNext()) {
+            int proximo = iterador.next();
+            if (iterador.hasNext())
                 conteudoDaMensagemBuilder.append(", ");
             else {
                 conteudoDaMensagemBuilder.append(" e ");
             }
-            return tralala(proximo, iterator, conteudoDaMensagemBuilder);
+            return adicionarNumero(proximo, iterador, conteudoDaMensagemBuilder);
         } else {
             return conteudoDaMensagemBuilder.append(".").toString();
         }
